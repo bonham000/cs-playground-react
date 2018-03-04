@@ -136,12 +136,22 @@ class Controls extends Component {
   toastShareLink = (shareLink) => {
     if (!toast.isActive(this.toastId)) {
       this.toastId = toast.error(
-        `Your share link is ${shareLink}`, {
+        `Your share link is ${shareLink} (click to copy)`, {
           autoClose: 5000,
-          closeOnClick: false
+          onClose: () => this.copyShareLink(shareLink),
         }
       )
     }
+  }
+  copyShareLink = (shareLink) => {
+    const input = this.secretShareLinkInput;
+
+    if (input) {
+      input.value = shareLink;
+      input.select();
+      document.execCommand("Copy");
+    }
+
   }
   render() {
     return (
@@ -192,7 +202,7 @@ class Controls extends Component {
           toastClassName={`toast ${this.props.theme}`}
           transition={BounceInBounceOut} />
         {/* dummy div for copying share link */}
-        <input type="text" ref={ref => this.dummy = ref} />
+        <input type="text" ref={ref => this.secretShareLinkInput = ref} />
       </React.Fragment>
     )
   }
