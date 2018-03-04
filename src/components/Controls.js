@@ -120,10 +120,11 @@ class Controls extends Component {
       : 'http://localhost:3000'
     // make POST req to cs-pg-react-api and respond
     // with mongoId associated w/ stored code string.
-    axios.post(`${apiURL}/insert-code`, {
-      api_key: process.env.REACT_APP_API_KEY,
-      code: this.props.code
-    })
+    // axios.post(`${apiURL}/insert-code`, {
+    //   api_key: process.env.REACT_APP_API_KEY,
+    //   code: this.props.code
+    // })
+    new Promise(res => res({ data: { hash: 'HAHAHAHAHAHAHA' }}))
       .then(res => {
         // concat w/ base & copy to clipboard as share link
         this.toastShareLink(`${baseURL}/share-repl/${res.data.hash}`)
@@ -150,6 +151,9 @@ class Controls extends Component {
       input.value = shareLink
       input.select()
       document.execCommand("Copy")
+      this.toastId = toast.success(
+        `Share link copied to clipboard!`, { autoClose: 2500 }
+      )
     }
 
   }
