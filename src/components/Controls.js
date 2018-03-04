@@ -144,12 +144,12 @@ class Controls extends Component {
     }
   }
   copyShareLink = (shareLink) => {
-    const input = this.secretShareLinkInput;
+    const input = this.secretShareLinkInput
 
     if (input) {
-      input.value = shareLink;
-      input.select();
-      document.execCommand("Copy");
+      input.value = shareLink
+      input.select()
+      document.execCommand("Copy")
     }
 
   }
