@@ -120,11 +120,10 @@ class Controls extends Component {
       : 'http://localhost:3000'
     // make POST req to cs-pg-react-api and respond
     // with mongoId associated w/ stored code string.
-    // axios.post(`${apiURL}/insert-code`, {
-    //   api_key: process.env.REACT_APP_API_KEY,
-    //   code: this.props.code
-    // })
-    new Promise(res => res({ data: { hash: 'HAHAHAHAHAHAHA' }}))
+    axios.post(`${apiURL}/insert-code`, {
+      api_key: process.env.REACT_APP_API_KEY,
+      code: this.props.code
+    })
       .then(res => {
         // concat w/ base & copy to clipboard as share link
         this.toastShareLink(`${baseURL}/share-repl/${res.data.hash}`)
