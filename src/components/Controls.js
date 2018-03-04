@@ -125,7 +125,7 @@ class Controls extends Component {
       code: this.props.code
     })
       .then(res => {
-        // concat w/ base & copy to clipboard as share link
+        // concat w/ base offer toast for user to copy to clipboard
         this.toastShareLink(`${baseURL}/share-repl/${res.data.hash}`)
       })
       .catch(err => {
@@ -137,7 +137,6 @@ class Controls extends Component {
     if (!toast.isActive(this.toastId)) {
       this.toastId = toast.error(
         `Your share link is ${shareLink} (click to copy)`, {
-          autoClose: 5000,
           onClose: () => this.copyShareLink(shareLink),
         }
       )
