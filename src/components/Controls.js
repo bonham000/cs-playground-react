@@ -137,6 +137,7 @@ class Controls extends Component {
     if (!toast.isActive(this.toastId)) {
       this.toastId = toast.error(
         `Your share link is ${shareLink} (click to copy)`, {
+          autoClose: false,
           onClose: () => this.copyShareLink(shareLink),
         }
       )
